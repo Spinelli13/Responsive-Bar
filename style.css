@@ -14,7 +14,7 @@
     --cor-toggle: #DDD;
     --cor-texto: #707070;
 
-    --trans-03: all 0.2s ease;
+    --trans-02: all 0.2s ease;
     --trans-03: all 0.3s ease;
     --trans-04: all 0.4s ease;
     --trans-05: all 0.5s ease;
@@ -23,6 +23,16 @@
 body {
     height: 100vh;
     background: var(--cor-body);
+    transition: var(--trans-05);
+}
+
+body.dark{
+    --cor-body: #18191A;
+    --cor-sidebar: #242526;
+    --cor-primaria: #3A3B3C;
+    --cor-ligth-primaria: #3A3B3C;
+    --cor-toggle: #FFF;
+    --cor-texto: #CCC;
 }
 
 
@@ -33,20 +43,35 @@ body {
     top: 0;
     left: 0;
     height: 100%;
+    width: 250px;
     padding: 10px 14px;
     background: var(--cor-sidebar);
+    transition: var(--trans-05);
+    z-index: 100;
+}
+
+.sidebar.close{
+    width: 60px;
 }
 
 .sidebar .texto {
     font-size: 16px;
     font-weight: 500;
     color: var(--cor-texto);
+    transition: var(--trans-04);
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.sidebar.close .texto{
+    opacity: 0;
 }
 
 .sidebar .imagem {
     min-width: 60px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .sidebar li {
@@ -69,6 +94,7 @@ body {
 .sidebar li .icone,
 .sidebar li .texto {
     color: var(--cor-texto);
+    transition: var(--trans-02);
 }
 
 .sidebar header {
@@ -103,7 +129,7 @@ header .imagem-texto .header-texto {
     position: absolute;
     top: 50%;
     right: -25px;
-    transform: translateY(-50%);
+    transform: translateY(-50%) rotate(180deg);
     height: 25px;
     width: 25px;
     background-color: var(--cor-primaria);
@@ -113,10 +139,25 @@ header .imagem-texto .header-texto {
     border-radius: 50%;
     color: var(--cor-sidebar);
     font-size: 22px;
+    transition: var(--trans-03);
+}
+
+.sidebar.close  header .toggle{    
+    transform: translateY(-50%);
+}
+
+body.dark  .sidebar header .toggle{
+    color: var(--cor-texto);
+}
+
+.sidebar .menu{
+    margin-top: 35px;
 }
 
 .sidebar .caixaDeProcura {
     background: var(--cor-ligth-primaria);
+    border-radius: 6px;
+    transition: var(--trans-05);
 }
 
 .caixaDeProcura input {
@@ -124,8 +165,13 @@ header .imagem-texto .header-texto {
     width: 100%;
     outline: none;
     border: none;
+    text-align: center;
     border-radius: 6px;
-    background: var(--cor-ligth-primaria);
+    font-size: 16px;
+    font-weight: 500;
+    background: var(--cor-ligth-primaria); 
+    color: var(--cor-texto);
+
 }
 
 .sidebar li a {
@@ -138,12 +184,119 @@ header .imagem-texto .header-texto {
     transition: var(--trans-04);
 }
 
-.sidebar li a:hover{
+.sidebar li a:hover {
     background: var(--cor-primaria);
 
 }
 
 .sidebar li a:hover .icone,
-.sidebar li a:hover .texto{
+.sidebar li a:hover .texto {
     color: var(--cor-sidebar);
+}
+
+body.dark .sidebar li a:hover .icone,
+body.dark .sidebar li a:hover .texto {
+    color: var(--cor-texto);
+}
+
+.sidebar .menu-bar {
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 500px;
+}
+
+.menu-bar .modoDark {
+    position: relative;
+    border-radius: 6px;
+    background: var(--cor-ligth-primaria);
+}
+
+.menu-bar .modoDark .moon-sun {
+    height: 50px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar .modoDark i {
+    position: absolute;
+    transition: var(--trans-03);
+}
+
+.menu-bar .modoDark i.sun{
+    opacity: 0;
+}
+
+body.dark .menu-bar .modoDark i.sun{
+    opacity: 1;
+}
+
+body.dark .menu-bar .modoDark i.moon{
+    opacity: 0;
+}
+
+.menu-bar .modoDark .toggle-troca{
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 60px;
+    cursor: pointer;
+    border-radius: 6px;
+    background: var(--cor-ligth-primaria);
+    transition: var(--trans-05);
+}
+
+.toggle-troca .troca{
+    position: relative;
+    height: 22px;
+    width: 44px;
+    border-radius: 25px;
+    background: var(--cor-toggle);
+}
+
+.bottom-container{
+    margin-bottom: 20px;
+}
+
+.troca::before{
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background: var(--cor-sidebar);
+    transition: var(--trans-03);    
+}
+
+body.dark .troca::before{
+    left: 24px;
+}
+
+.home{
+    position: relative;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background: var(--cor-body);
+    transition: var(--trans-05);
+}
+
+.home .texto{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--cor-texto);
+    padding: 8px 40px;
+}
+
+.sidebar.close ~ .home{
+    width: calc(100% - 88px);
+    left: 88px;
 }
