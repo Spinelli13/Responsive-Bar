@@ -11,7 +11,7 @@ toggle.addEventListener("click", () =>{
 });
 
 caixaDeProcuraBtn.addEventListener("click", () =>{
-    sidebar.classList.remove ("close");
+    sidebar.classList.remove("close");
 });
 
 darkMode.addEventListener("click", () =>{
